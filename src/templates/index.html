@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+	<meta charset="UTF-8">
+	<title>WATBAY</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet">
+	<link href="../static/css/index.css" rel="stylesheet" type="">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="../static/pictures/watbay.ico" rel="icon" sizes="16x16" type="image/gif">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script src="../static/javascript/main.js"></script>
+</head>
+<body>
+	<header>
+		<nav class="#0091ea light-blue accent-4 z-depth-3" role="navigation">
+			<div class="nav-wrapper container">
+				<a class="brand-logo" id="logo-container">WATBAY</a>
+				<ul class="right hide-on-med-and-down">
+					<li>
+						<a href="/dokumentation"><i class="material-icons left">description</i>Dokumentation</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<!--Header-->
+		<div class="row">
+			<div class="col s12">
+				<div class="card">
+					<div class="card-content">
+						<h4>Bruksanvisningar</h4>
+						<p>Ladda upp en bild för att få ett genomsnittspris från eBay, bildens maximala storlek får vara 2MB, samt måste laddas upp i formatet PNG eller JPG.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--Preloader-->
+		<div class="container">
+			<div class="row">
+				<div class="preloader-form">
+					<div class="preloader-wrapper big active">
+						<div class="spinner-layer spinner-blue-only">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+					</div>
+				</div><!--Form-->
+				<form enctype="multipart/form-data" id="upload-file" method="post" name="upload-file">
+					<div class="file-field input-field">
+						<div class="btn #69f0ae green accent-2">
+							<span>Fil</span> <input name="file" type="file">
+						</div>
+						<div class="file-path-wrapper">
+							<input class="file-path validate" type="text">
+						</div><button class="btn waves-effect waves-light #00e676 green accent-3" id="upload-file-btn" type="button">Skicka<i class="material-icons right">send</i></button>
+					</div>
+				</form>
+			</div>
+			
+			<!--Korten-->
+			<div class="row">
+				<div class="col s6">
+					<div class="card1">
+						<div class="card z-depth-3">
+							<div class="card-content">
+								<ul class="collection">
+									<li class="collection-item avatar">
+										<i class="material-icons circle red">image</i> <span class="title">Varan</span>
+										<p id="item"></p>
+									</li>
+									<li class="collection-item avatar">
+										<i class="material-icons circle">attach_money</i> <span class="title">Snittpris</span>
+										<p id="avg_price"></p>
+									</li>
+									<li class="collection-item avatar">
+										<i class="material-icons circle blue">equalizer</i> <span class="title">Bild-precision</span>
+										<p id="score"></p>
+									</li>
+								</ul>
+								<p id="card1_res"></p>
+							</div>
+							<div class="card-action #00e676 green accent-3">
+								<a class="white-text" href="" id="link1" target="_blank">Ebay länk till varan</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col s6">
+					<div class="card2">
+						<div class="card z-depth-3">
+							<div class="card-content">
+								<ul class="collection">
+									<li class="collection-item avatar">
+										<i class="material-icons circle red">image</i> <span class="title">Varan</span>
+										<p id="item1"></p>
+									</li>
+									<li class="collection-item avatar">
+										<i class="material-icons circle">attach_money</i> <span class="title">Snittpris</span>
+										<p id="avg_price1"></p>
+									</li>
+									<li class="collection-item avatar">
+										<i class="material-icons circle blue">equalizer</i> <span class="title">Bild-precision</span>
+										<p id="score1"></p>
+									</li>
+								</ul>
+								<p id="card2_res"></p>
+							</div>
+							<div class="card-action #00e676 green accent-3">
+								<a class="white-text" href="#" id="link2" target="_blank">Ebay länk till varan</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	
+	<!--Footer-->
+	<footer class="page-footer light-blue accent-4">
+		<div class="container">
+			<div class="row">
+				<div class="col l12 s12">
+					<h5 class="white-text">WATBAY</h5>
+					<p class="grey-text text-lighten-4">Hitta dina varor enkelt och snabbt!</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				© 2017 WATBAY Development TEAM
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+	<meta charset="UTF-8">
+	<title>WATBAY</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js">
+	</script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="../static/css/index.css" rel="stylesheet" type="">
+	<link href="../static/pictures/watbay.ico" rel="icon" sizes="16x16" type="image/gif">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js">
+	</script>
+	<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css" rel="stylesheet">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js">
+	</script>
+	<script>
+	hljs.initHighlightingOnLoad();
+	</script>
+</head>
+<body>
+	<header>
+		<nav class="nav-extended #0091ea light-blue accent-4 z-depth-3">
+			<div class="nav-wrapper container">
+				<a class="brand-logo">WATBAY - Dokumentation</a>
+				<ul class="right hide-on-med-and-down" id="nav-mobile">
+					<li>
+						<a href="/"><i class="material-icons left">home</i>WATBAY</a>
+					</li>
+				</ul>
+			</div>
+			<div class="nav-content">
+				<ul class="tabs tabs-transparent">
+					<li class="tab">
+						<a class="active" href="#test1">Introduktion</a>
+					</li>
+					<li class="tab">
+						<a href="#test3">Kod exempel - Javascript</a>
+					</li>
+					<li class="tab">
+						<a href="#test4">Respons exempel - JSON</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="row valign-wrapper">
+			<div class="col s12 offset-s1 valign">
+				<div class="col s12" id="test1">
+					<h4>WATBAY API</h4>
+					<p>Tjänstens syfte är att analysera en valfri bild från användaren på ett objekt och sedan ge resultat på vad objektets genomsnittspris är på eBay. I API: et kan resultatet nås av att POST:a en bild i följande format; JPG, PNG. Med en maximal filstorlek på 2 000 000 bytes (2 MB). Ingen autentisering behövs utan API :et är öppet för vem som helst.</p>
+					<h5>Regler</h5>
+					<p>Tillåtna indata är en bild i filformatet JPG eller PNG med maximal storlek på 2MB. Bilden skall vara märkt med namnet ”file” för att det skall fungera med API:et. Returdatan kommer I JSON format och inga andra alternative ges.</p>
+				</div>
+				<div class="col s12" id="test3">
+					<h4>Exempel</h4>
+					<p>Det här Javascript-exemplet POSTar filen från formen och skickar tillbaka JSON värden från servern för att sedan lägga in respons värdena i diverse olika HTML element.</p>
+					<pre><code>$(function() {
+    $('#upload-file-btn').click(function() {
+        var form_data = new FormData($('#upload-file')[0]);
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/watbay',
+            data: form_data,
+            contentType: false,
+            dataType: "json",
+            processData: false,
+            success: function(data) {
+                for (var x = 0; x &lt; data.length; x++) {
+                    $("#item").html(data[0].item);
+                    $("#avg_price").html(data[0].avg_price + " USD");
+                    $("#score").html(data[0].score + "%");
+                    $("#item1").html(data[1].item);
+                    $("#avg_price1").html(data[1].avg_price + " USD");
+                    $("#score1").html(data[1].score + "%");
+                }
+            },
+            error: function(data) {
+                alert("Något gick fel.");
+            }
+        });
+    });
+});</code></pre>
+				</div>
+				<div class="col s12" id="test4">
+					<h4>Responser</h4>
+					<p>API :et ger svar på de två mest relevanta sakerna som bilden föreställer. Varje relevant sak innehåller en lista med värden:</p>
+					<ul class="collection">
+						<li class="collection-item">Item = Objektets namn</li>
+						<li class="collection-item">Avg_price = Genomsnittligt pris i USD ($)</li>
+						<li class="collection-item">Score = Träffsäkerhet i procent</li>
+						<li class="collection-item">Link = Länk till en sökning på eBay motsvarande resultatet.</li>
+					</ul>
+					<h5>Exempel</h5>
+					<p>Visar ett exempel på ett JSON retur värde, retur värden baserar sig på bildens motiv.</p>
+					<pre><code>[  {
+      "item":"dish",
+      "avg_price":34,
+      "score":94,
+      "link":"https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR0.TRC0.H0.Xdish.TRS0&_nkw=dish&_sacat=0"
+   },
+   {
+      "item":"taco",
+      "avg_price":41,
+      "score":88,
+      "link":"https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2050601.m570.l1313.TR0.TRC0.H0.Xtaco.TRS0&_nkw=taco&_sacat=0"
+   }
+]</code></pre>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main>
+		<!--Navigation clean-->
+	</main><!--Footer-->
+	<footer class="page-footer light-blue accent-4">
+		<div class="container">
+			<div class="row">
+				<div class="col l12 s12">
+					<h5 class="white-text">WATBAY</h5>
+					<p class="grey-text text-lighten-4">Hitta dina varor enkelt och snabbt!</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				© 2017 WATBAY Development TEAM
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
